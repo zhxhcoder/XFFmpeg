@@ -1,8 +1,13 @@
 package com.zhxh.xffmpeg;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+
+import com.zhxh.xffmpeg.ffmpegrecorder.FFmpegRecordActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,8 +22,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Example of a call to a native method
-        TextView tv = (TextView) findViewById(R.id.sample_text);
-        tv.setText(stringFromJNI());
+        TextView tvNative = findViewById(R.id.tvNative);
+        tvNative.setText(stringFromJNI());
+
+
+        Button btnResult = findViewById(R.id.btnResult);
+
+        btnResult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, FFmpegRecordActivity.class));
+            }
+        });
     }
 
     /**
